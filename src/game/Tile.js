@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import * as warriorActions from '../actions/warrior_actions'
 
 class Tile extends Component {
-
   afterTransition = () => {
     if (this.props.action === RUN_OUT) {
       this.props.actions.runIn()
@@ -17,8 +16,8 @@ class Tile extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.action === START_RUNNING) {
+  componentDidUpdate(prevProps) {
+    if (this.props.action === START_RUNNING && prevProps.action !== START_RUNNING) {
       this.props.actions.runOut()
     }
   }
@@ -62,9 +61,8 @@ Tile.defaultProps = {
   action: IDLE
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(warriorActions, dispatch)
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(warriorActions, dispatch)
+})
+
 export default connect(null, mapDispatchToProps)(Tile)

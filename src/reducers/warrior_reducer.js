@@ -3,7 +3,7 @@ import { START_RUNNING, END_RUNNING, RUN_OUT, RUN_IN, ATTACK, MOOD } from '../ac
 const initialState = {
   currentTile: 0,
   mood: MOOD.IDLE,
-  type: MOOD.IDLE
+  tileAction: MOOD.IDLE
 }
 
 export default (state = initialState, payload) => {

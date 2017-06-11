@@ -5,16 +5,20 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Tile from './Tile'
 import Warrior from './Warrior'
+import Zombie from './Zombie'
 import ExitPost from './ExitPost'
 import * as warriorActions from '../actions/warrior_actions'
+import * as zombieActions from '../actions/zombie_actions'
 
 const LAST_TILE_IDX = 8
 
 class World extends Component {
-  tileByIndex = idx => {
-    const { warrior } = this.props
+  buildTile = idx => {
+    const { warrior, zombie } = this.props
     if (idx === warrior.currentTile) {
       return <Tile key={idx} action={warrior.tileAction}><Warrior mood={warrior.mood} /></Tile>
+    } else if (idx === zombie.currentTile) {
+      return <Tile key={idx}><Zombie mood={zombie.mood} /></Tile>
     } else if (idx === LAST_TILE_IDX) {
       return <Tile key={idx}><ExitPost /></Tile>
     } else {
@@ -24,8 +28,8 @@ class World extends Component {
 
   renderTiles = () => {
     const tiles = []
-    for (let i = 0; i < 9; i++) {
-      tiles.push(this.tileByIndex(i))
+    for (let idx = 0; idx < 9; idx++) {
+      tiles.push(this.buildTile(idx))
     }
     return tiles
   }
@@ -36,6 +40,10 @@ class World extends Component {
 
   attack = () => {
     this.props.actions.attack()
+  }
+
+  zombiefy = () => {
+    this.props.actions.zombieAttack()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,19 +65,19 @@ class World extends Component {
         <br />
         <button onClick={this.run}>RUN</button>
         <button onClick={this.attack}>ATTACK</button>
+        <button onClick={this.zombiefy}>ZOMBIEFY</button>
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    warrior: state.warriorReducer
-  }
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(warriorActions, dispatch)
-  }
-}
+const mapStateToProps = state => ({
+  warrior: state.warriorReducer,
+  zombie: state.zombieReducer
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ ...warriorActions, ...zombieActions }, dispatch)
+})
+
 export default connect(mapStateToProps, mapDispatchToProps)(World)

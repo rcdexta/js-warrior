@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { keyframes } from 'styled-components'
 
-export const stand = keyframes`
+export const warriorStand = keyframes`
   from {
     background-position: 0 68.965517%;
   }
@@ -9,7 +9,17 @@ export const stand = keyframes`
     background-position: 0 100%;
   }
 `
-export const run = keyframes`
+
+export const zombieStand = keyframes`
+  from {
+    background-position: 0 58.823529%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+`
+
+export const warriorRun = keyframes`
   from {
     background-position: 0 34.482759%;
   }
@@ -18,12 +28,21 @@ export const run = keyframes`
   }
 `
 
-export const attack = keyframes`
+export const warriorAttack = keyframes`
   from {
     background-position: 0 0%;
   }
   to {
     background-position: 0 31.034483%; 
+  }
+`
+
+export const zombieAttack = keyframes`
+  from {
+    background-position: 0 35.294118%; 
+  }
+  to {
+    background-position: 0 55.882353%; 
   }
 `
 
@@ -41,7 +60,7 @@ export const WorldContainer = styled.div`
   background-size: contain;
 `
 
-export const WarriorWrap = styled.div`
+export const CharacterWrap = styled.div`
   position: absolute;
   bottom: 7em;
   z-index: 1000;
@@ -55,22 +74,42 @@ export const Warrior = styled.div`
   margin-left: 10%;
 `
 
+export const Zombie = styled.div`
+  max-width: 100%;
+  height: 125px;
+  background-image: url(https://dl.dropbox.com/s/14yvzlrz3x3p5rx/zombie.png);
+  background-repeat: no-repeat;
+  margin-left: 10%;
+`
+
 export const WarriorIdle = styled(Warrior)`
   background-size: 180.689655%;
   width: 75px;
-  animation: ${stand} .8s steps(9) infinite;
+  animation: ${warriorStand} .8s steps(9) infinite;
+`
+
+export const ZombieIdle = styled(Zombie)`
+  background-size: 145.37037%; ;
+  width: 108px;
+  animation: ${zombieStand} .8s steps(14) infinite;
 `
 
 export const WarriorRunning = styled(Warrior)`
   background-size: 139.689655%;
   width: 94px;
-  animation: ${run} .8s steps(9) infinite;
+  animation: ${warriorRun} .8s steps(9) infinite;
 `
 
 export const WarriorAttack = styled(Warrior)`
   background-size: 100%;
   width: 136px;
-  animation: ${attack} .8s steps(9) infinite;
+  animation: ${warriorAttack} .8s steps(9) infinite;
+`
+
+export const ZombieAttack = styled(Zombie)`
+  background-size: 145.37037%;
+  width: 111px;
+  animation: ${zombieAttack} .8s steps(7) infinite;
 `
 
 export const ExitPostDiv = styled.div`
