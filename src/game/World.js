@@ -38,6 +38,12 @@ class World extends Component {
     this.props.actions.attack()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.warrior.currentTile === LAST_TILE_IDX) {
+      alert('LEVEL COMPLETED!!!')
+    }
+  }
+
   render() {
     return (
       <div>

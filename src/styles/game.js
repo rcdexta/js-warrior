@@ -41,13 +41,13 @@ export const WorldContainer = styled.div`
   background-size: contain;
 `
 
-export const CharacterWrap = styled.div`
+export const WarriorWrap = styled.div`
   position: absolute;
   bottom: 7em;
   z-index: 1000;
 `
 
-export const Character = styled.div`
+export const Warrior = styled.div`
   max-width: 100%;
   height: 125px;
   background-image: url(https://dl.dropbox.com/s/17iaqkidi3chfbr/sprite_resp.png);
@@ -55,19 +55,19 @@ export const Character = styled.div`
   margin-left: 10%;
 `
 
-export const CharacterIdle = styled(Character)`
+export const WarriorIdle = styled(Warrior)`
   background-size: 180.689655%;
   width: 75px;
   animation: ${stand} .8s steps(9) infinite;
 `
 
-export const CharacterRunning = styled(Character)`
+export const WarriorRunning = styled(Warrior)`
   background-size: 139.689655%;
   width: 94px;
   animation: ${run} .8s steps(9) infinite;
 `
 
-export const CharacterAttack = styled(Character)`
+export const WarriorAttack = styled(Warrior)`
   background-size: 100%;
   width: 136px;
   animation: ${attack} .8s steps(9) infinite;
