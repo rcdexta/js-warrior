@@ -9,6 +9,23 @@ export const stand = keyframes`
     background-position: 0 100%;
   }
 `
+export const run = keyframes`
+  from {
+    background-position: 0 34.482759%;
+  }
+  to {
+    background-position: 0 65.517241%; 
+  }
+`
+
+export const attack = keyframes`
+  from {
+    background-position: 0 0%;
+  }
+  to {
+    background-position: 0 31.034483%; 
+  }
+`
 
 export const Canvas = styled.div`
   height: 35em;
@@ -31,13 +48,28 @@ export const CharacterWrap = styled.div`
 `
 
 export const Character = styled.div`
-  max-width: 100%; 
-  background-size: 180.689655%;
-  width: 75px;
+  max-width: 100%;
   height: 125px;
   background-image: url(https://dl.dropbox.com/s/17iaqkidi3chfbr/sprite_resp.png);
   background-repeat: no-repeat;
+`
+
+export const CharacterIdle = styled(Character)`
+  background-size: 180.689655%;
+  width: 75px;
   animation: ${stand} .8s steps(9) infinite;
+`
+
+export const CharacterRunning = styled(Character)`
+  background-size: 139.689655%;
+  width: 94px;
+  animation: ${run} .8s steps(9) infinite;
+`
+
+export const CharacterAttack = styled(Character)`
+  background-size: 100%;
+  width: 136px;
+  animation: ${attack} .8s steps(9) infinite;
 `
 
 export const ExitPostDiv = styled.div`

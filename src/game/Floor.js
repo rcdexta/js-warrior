@@ -7,14 +7,14 @@ import {FloorDiv} from '../styles/game'
 export default class Floor extends Component {
   render() {
     return <FloorDiv>
-      <Tile><Warrior/></Tile>
+      <Tile><Warrior mood="idle"/></Tile>
       <Tile/>
       <Tile/>
       <Tile/>
       <Tile/>
       <Tile/>
-      <Tile/>
-      <Tile/>
+      <Tile><Warrior mood="running"/></Tile>
+      <Tile><Warrior mood="attack"/></Tile>
       <Tile><ExitPost/></Tile>
     </FloorDiv>
   }
