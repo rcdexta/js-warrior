@@ -1,16 +1,17 @@
 import React, {Component} from 'react'
 import {CharacterWrap, CharacterIdle, CharacterRunning, CharacterAttack} from '../styles/game'
+import {MOOD} from '../actions/constants'
 
 export default class Warrior extends Component {
 
   characterState = () => {
     switch(this.props.mood) {
-      case 'idle':
-        return <CharacterIdle/>
-      case 'running':
+      case MOOD.RUNNING:
         return <CharacterRunning/>
-      default:
+      case MOOD.ATTACK:
         return <CharacterAttack/>
+      default:
+        return <CharacterIdle/>
     }
   }
 

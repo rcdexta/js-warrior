@@ -27,7 +27,7 @@ export const attack = keyframes`
   }
 `
 
-export const Canvas = styled.div`
+export const WorldContainer = styled.div`
   height: 35em;
   max-height: 35em;
   width: 100%;
@@ -52,6 +52,7 @@ export const Character = styled.div`
   height: 125px;
   background-image: url(https://dl.dropbox.com/s/17iaqkidi3chfbr/sprite_resp.png);
   background-repeat: no-repeat;
+  margin-left: 10%;
 `
 
 export const CharacterIdle = styled(Character)`
@@ -98,5 +99,4 @@ export const TileDiv = styled.div`
   height: auto;
   display: flex;
   background-size: inherit;
-  justify-content: center;
 `
