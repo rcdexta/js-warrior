@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "grid-styled": "^2.0.0-1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
+    "react-ace": "^5.0.1",
     "react-dom": "^15.5.4",
     "react-flip-move": "^2.9.14",
     "react-redux": "^5.0.5",

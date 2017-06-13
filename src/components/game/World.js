@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { WorldContainer } from '../styles/game'
-import { FloorDiv } from '../styles/game'
+import {WorldContainer} from '../../styles/game'
+import { FloorDiv } from '../../styles/game'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Tile from './Tile'
 import Warrior from './Warrior'
 import Zombie from './Zombie'
 import ExitPost from './ExitPost'
-import * as warriorActions from '../actions/warrior_actions'
-import * as zombieActions from '../actions/zombie_actions'
+import * as warriorActions from '../../actions/warrior_actions'
+import * as zombieActions from '../../actions/zombie_actions'
 
 const LAST_TILE_IDX = 8
 
@@ -54,18 +54,12 @@ class World extends Component {
 
   render() {
     return (
-      <div>
-        <div className="centered-container">
-          <WorldContainer>
-            <FloorDiv>
-              {this.renderTiles()}
-            </FloorDiv>
-          </WorldContainer>
-        </div>
-        <br />
-        <button onClick={this.run}>RUN</button>
-        <button onClick={this.attack}>ATTACK</button>
-        <button onClick={this.zombiefy}>ZOMBIEFY</button>
+      <div className="centered-container">
+        <WorldContainer>
+          <FloorDiv>
+            {this.renderTiles()}
+          </FloorDiv>
+        </WorldContainer>
       </div>
     )
   }

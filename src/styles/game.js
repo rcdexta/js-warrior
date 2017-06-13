@@ -60,9 +60,14 @@ export const WorldContainer = styled.div`
   background-size: contain;
 `
 
+export const Progress = styled.div`
+ height: 10px;
+ background-color: black;
+`
+
 export const CharacterWrap = styled.div`
   position: absolute;
-  bottom: 7em;
+  bottom: 6.9em;
   z-index: 1000;
 `
 
@@ -124,7 +129,7 @@ export const ExitPostDiv = styled.div`
 
 export const FloorDiv = styled.div`
     position: absolute;
-    bottom: 0px;
+    bottom: -1px;
     height: 20%;
     width: 100%;
     flex-direction: row;
@@ -134,8 +139,9 @@ export const FloorDiv = styled.div`
 export const TileDiv = styled.div`
   background-image: url(https://dl.dropbox.com/s/hpfi20lhjl1qx8w/Tile.png);
   background-repeat: no-repeat;
-  width: 11%;
+  width: 12%;
   height: auto;
   display: flex;
-  background-size: inherit;
+  background-size: cover;
+  margin-bottom: 1px;
 `

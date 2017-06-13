@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {CharacterWrap, WarriorIdle, WarriorRunning, WarriorAttack} from '../styles/game'
-import {MOOD} from '../actions/constants'
+import {CharacterWrap, WarriorIdle, WarriorRunning, WarriorAttack} from '../../styles/game'
+import {MOOD} from '../../actions/constants'
 
 export default class Warrior extends Component {
 
