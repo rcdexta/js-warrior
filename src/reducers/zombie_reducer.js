@@ -1,7 +1,7 @@
 import { ZOMBIE_ATTACK, MOOD } from '../actions/constants'
 
 const initialState = {
-  currentTile: 5,
+  currentTile: -1,
   mood: MOOD.IDLE,
   tileAction: MOOD.IDLE
 }

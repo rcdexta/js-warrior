@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {WorldContainer} from '../../styles/game'
+import {Bricks, WorldContainer} from '../../styles/game'
 import { FloorDiv } from '../../styles/game'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
