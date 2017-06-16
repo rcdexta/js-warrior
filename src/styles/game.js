@@ -145,3 +145,9 @@ export const TileDiv = styled.div`
   background-size: cover;
   margin-bottom: 1px;
 `
+
+export const LogoImg = styled.img`
+  height: 42px;
+  width: auto;
+  margin-left: 2%;
+`

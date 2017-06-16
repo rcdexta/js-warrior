@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './styles/app.css'
+import './styles/base.css'
+import LogoPng from './images/logo.png'
 import World from './components/game/World'
 import Editor from './components/Editor'
 import { Flex, Box } from 'grid-styled'
-import {Progress} from "./styles/game";
+import {Progress, LogoImg} from "./styles/game";
 
 const code = `
 function yourTurn(warrior){
@@ -16,6 +18,11 @@ class App extends Component {
   render() {
     return (
     <Flex wrap>
+      <Box width={1}>
+        <header>
+          <a href="#" class="logo"><LogoImg src={LogoPng}/></a>
+        </header>
+      </Box>
       <Box width={1}>
         <World />
       </Box>
