@@ -1669,7 +1669,7 @@ Add the following scripts in your `package.json`:
   // ...
   "scripts": {
     // ...
-    "predeploy": "npm run build",
+    "predeploy": orchestrate,
     "deploy": "gh-pages -d build"
   }
 ```

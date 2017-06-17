@@ -13,6 +13,7 @@ class Editor extends Component {
         name="js-warrior-editor"
         showPrintMargin={false}
         value={this.props.code}
+        onChange={this.props.onCodeChange}
         fontSize={13}
         width="100%"
         editorProps={{ $blockScrolling: true }}
@@ -22,7 +23,8 @@ class Editor extends Component {
 }
 
 Editor.propTypes = {
-  code: PropTypes.string.isRequired
+  code: PropTypes.string.isRequired,
+  onCodeChange: PropTypes.func.isRequired
 }
 Editor.defaultProps = {}
 

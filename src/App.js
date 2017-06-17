@@ -2,17 +2,10 @@ import React, { Component } from 'react'
 import './styles/app.css'
 import './styles/base.css'
 import LogoPng from './images/logo.png'
-import World from './components/game/World'
-import Editor from './components/Editor'
+import World from './components/elements/World'
+import GameEngine from './components/GameEngine'
 import { Flex, Box } from 'grid-styled'
-import {Progress, LogoImg} from "./styles/game";
-
-const code = `
-function yourTurn(warrior){
-  //Write your code here. 
-  //Refer documentation for api methods on warrior
-}
-`
+import {Progress, LogoImg} from "./styles/world";
 
 class App extends Component {
   render() {
@@ -20,7 +13,7 @@ class App extends Component {
     <Flex wrap>
       <Box width={1}>
         <header>
-          <a href="#" class="logo"><LogoImg src={LogoPng}/></a>
+          <a href="#"><LogoImg src={LogoPng}/></a>
         </header>
       </Box>
       <Box width={1}>
@@ -30,7 +23,7 @@ class App extends Component {
         <Progress />
       </Box>
       <Box width={1/2}>
-        <Editor code={code}/>
+        <GameEngine/>
       </Box>
       <Box width={1/2}>
         Logs here

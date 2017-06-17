@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TileDiv } from '../../styles/game'
+import { TileDiv } from '../../styles/world'
 import FlipMove from 'react-flip-move'
 import { RUN_OUT, START_RUNNING, IDLE, RUN_IN } from '../../actions/constants'
 import PropTypes from 'prop-types'

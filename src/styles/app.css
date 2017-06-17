@@ -14,3 +14,7 @@ body {
   justify-content: center;
   flex: 0 1 auto;
 }
+
+body, button, p, a {
+  font-family: 'Source Sans Pro', sans-serif;
+}

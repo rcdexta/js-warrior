@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {CharacterWrap, ZombieIdle, ZombieAttack} from '../../styles/game'
+import {CharacterWrap, ZombieIdle, ZombieAttack} from '../../styles/world'
 import {MOOD} from '../../actions/constants'
 
 export default class Zombie extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {Bricks, WorldContainer} from '../../styles/game'
-import { FloorDiv } from '../../styles/game'
+import {WorldContainer} from '../../styles/world'
+import { FloorDiv } from '../../styles/world'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Tile from './Tile'
