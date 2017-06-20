@@ -1,11 +1,10 @@
-import { START_RUNNING, END_RUNNING, RUN_OUT, RUN_IN, ATTACK, REST, MOOD } from '../actions/constants'
+import { REST, WALK } from '../actions/constants'
 import update from 'immutability-helper'
 
-const initialState = {
-  currentTile: 0,
+const defaultState = {
+  tile: 0,
   health: 20,
-  mood: MOOD.IDLE,
-  tileAction: MOOD.IDLE
+  state: REST
 }
 
 const takeRest = state => {
@@ -13,20 +12,16 @@ const takeRest = state => {
   return update(state, { health: { $set: newHealth } })
 }
 
-export default (state = initialState, payload) => {
+const incrementTile = state => {
+  return update(state, { tile: { $apply: x => x + 1 } })
+}
+
+export default (state = defaultState, payload) => {
   switch (payload.type) {
-    case START_RUNNING:
-      return { ...state, tileAction: payload.type, mood: MOOD.RUNNING }
-    case RUN_OUT:
-      return { ...state, tileAction: payload.type, mood: MOOD.RUNNING }
-    case RUN_IN:
-      return { ...state, tileAction: payload.type, currentTile: state.currentTile + 1, mood: MOOD.RUNNING }
-    case END_RUNNING:
-      return { ...state, tileAction: payload.type, mood: MOOD.IDLE }
+    case WALK:
+      return incrementTile(state)
     case REST:
       return takeRest(state)
-    case ATTACK:
-      return { ...state, mood: MOOD.ATTACK }
     default:
       return state
   }

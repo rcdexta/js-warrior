@@ -5,11 +5,11 @@ class Warrior {
   }
 
   walk() {
-    this.actions.startRunning()
+    this.actions.walk()
   }
 
   attack() {
-
+    this.actions.attack()
   }
 
   rest() {

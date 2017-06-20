@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
-import {CharacterWrap, WarriorIdle, WarriorRunning, WarriorAttack} from '../../styles/world'
-import {MOOD} from '../../actions/constants'
+import PropTypes from 'prop-types'
+import {CharacterWrap, WarriorIdle, warriorWalking, WarriorAttack} from '../../styles/world'
+import {WALK, ATTACK, REST} from '../../actions/constants'
 
 export default class Warrior extends Component {
 
   warriorState = () => {
-    switch(this.props.mood) {
-      case MOOD.RUNNING:
-        return <WarriorRunning/>
-      case MOOD.ATTACK:
+    switch(this.props.state) {
+      case WALK:
+        return <warriorWalking/>
+      case ATTACK:
         return <WarriorAttack/>
       default:
         return <WarriorIdle/>
@@ -22,3 +23,10 @@ export default class Warrior extends Component {
   }
 }
 
+Warrior.propTypes = {
+  state: PropTypes.string
+}
+
+Warrior.defaultProps = {
+  state: REST
+}

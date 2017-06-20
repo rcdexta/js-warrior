@@ -1,6 +1,6 @@
 class Player {
 
-  turn(warrior) {
+  playTurn(warrior) {
     warrior.walk()
   }
 

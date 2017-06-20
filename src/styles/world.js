@@ -19,7 +19,7 @@ export const zombieStand = keyframes`
   }
 `
 
-export const warriorRun = keyframes`
+export const warriorWalk = keyframes`
   from {
     background-position: 0 34.482759%;
   }
@@ -76,7 +76,7 @@ export const Warrior = styled.div`
   height: 125px;
   background-image: url(https://dl.dropbox.com/s/17iaqkidi3chfbr/sprite_resp.png);
   background-repeat: no-repeat;
-  margin-left: 10%;
+  margin-left: 40%;
 `
 
 export const Zombie = styled.div`
@@ -99,10 +99,10 @@ export const ZombieIdle = styled(Zombie)`
   animation: ${zombieStand} .8s steps(14) infinite;
 `
 
-export const WarriorRunning = styled(Warrior)`
+export const warriorWalking = styled(Warrior)`
   background-size: 139.689655%;
   width: 94px;
-  animation: ${warriorRun} .8s steps(9) infinite;
+  animation: ${warriorWalk} .8s steps(9) infinite;
 `
 
 export const WarriorAttack = styled(Warrior)`

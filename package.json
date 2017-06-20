@@ -12,6 +12,7 @@
     "react-dom": "^15.5.4",
     "react-flip-move": "^2.9.14",
     "react-redux": "^5.0.5",
+    "reduce-reducers": "^0.1.2",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.6",
     "styled-components": "^2.0.1"
