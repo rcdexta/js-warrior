@@ -8,6 +8,18 @@ class Warrior {
     this.actions.startRunning()
   }
 
+  attack() {
+
+  }
+
+  rest() {
+    this.actions.rest()
+  }
+
+  rescue() {
+
+  }
+
 }
 
 export default Warrior

@@ -45,8 +45,6 @@ class GameEngine extends Component {
     player.turn(warrior)
   }
 
-  componentDidMount() {}
-
   render() {
     return (
       <RelativeDiv>

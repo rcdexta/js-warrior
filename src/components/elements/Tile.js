@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import * as warriorActions from '../../actions/warrior_actions'
 
 class Tile extends Component {
+
   afterTransition = () => {
     if (this.props.action === RUN_OUT) {
       this.props.actions.runIn()
