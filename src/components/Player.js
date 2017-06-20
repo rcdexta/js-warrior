@@ -1,9 +1,11 @@
 class Player {
-
   playTurn(warrior) {
-    warrior.walk()
+    if (warrior.feel().isEnemy()) {
+      warrior.attack()
+    } else {
+      warrior.walk()
+    }
   }
-
 }
 
 export default Player

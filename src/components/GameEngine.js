@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editor from './Editor'
 import { RelativeDiv, SubmitButton } from '../styles/engine'
-import Warrior from './players/Warrior'
+import Warrior from '../models/Warrior'
 import Player from './Player'
 import { transform } from 'babel-standalone/babel'
 import { bindActionCreators } from 'redux'
@@ -25,8 +25,9 @@ class GameEngine extends Component {
   constructor(props, context) {
     super(props, context)
     const { dispatch } = this.context.store
+    const {gameState} = this.props
     const actions = bindActionCreators(warriorActions, dispatch)
-    const warrior = new Warrior(actions)
+    const warrior = new Warrior(actions, gameState.warrior.space)
     this.state = { code: defaultLevelCode, warrior: warrior, gameTimer: null }
   }
 
@@ -35,10 +36,17 @@ class GameEngine extends Component {
     this.setState({ code: code })
   }
 
+  updateWarriorSpace = (gameState) => {
+    const {warrior} = this.state
+    warrior.setSpace(gameState.warrior.space)
+    this.setState({warrior: warrior})
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.levelCompleted) {
+    if (nextProps.gameState.levelCompleted) {
       clearInterval(this.state.gameTimer)
     }
+    this.updateWarriorSpace(nextProps.gameState)
   }
 
   orchestrate = () => {
@@ -69,8 +77,7 @@ GameEngine.contextTypes = {
 }
 
 const mapStateToProps = state => ({
-  warrior: state.warriorReducer,
-  levelCompleted: state.levelCompleted
+  gameState: state.gameState
 })
 
 const mapDispatchToProps = dispatch => ({

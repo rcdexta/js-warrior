@@ -1,9 +1,9 @@
-import gamePlayReducer from './game_play_reducer'
-import warriorReducer from './warrior_reducer'
+import inferenceReducer from './inference_reducer'
+import elementsReducer from './elements_reducer'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 
-const combinedReducers = combineReducers({ warriorReducer })
-const rootReducer = reduceReducers(combinedReducers, gamePlayReducer)
+const combinedReducers = combineReducers({ gameState: elementsReducer })
+const rootReducer = reduceReducers(combinedReducers, inferenceReducer)
 
 export default rootReducer

@@ -1,7 +1,12 @@
-class Warrior {
+export default class Warrior {
 
-  constructor(actions) {
+  constructor(actions, space) {
     this.actions = actions
+    this.space = space
+  }
+
+  setSpace(space) {
+    this.space = space
   }
 
   walk() {
@@ -12,6 +17,10 @@ class Warrior {
     this.actions.attack()
   }
 
+  feel() {
+    return this.space
+  }
+
   rest() {
     this.actions.rest()
   }
@@ -20,6 +29,6 @@ class Warrior {
 
   }
 
-}
 
-export default Warrior
+
+}

@@ -1,4 +1,4 @@
-import { WALK, REST, ATTACK} from './constants'
+import { WALK, REST, ATTACK} from '../constants/actions'
 
 export const attack = () => ({ type: ATTACK })
 export const rest = () => ({type: REST})

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {WorldContainer} from '../../styles/world'
+import { WorldContainer } from '../../styles/world'
 import { FloorDiv } from '../../styles/world'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Tile from './Tile'
 import Warrior from './Warrior'
+import Zombie from './Zombie'
 import ExitPost from './ExitPost'
 import * as warriorActions from '../../actions/warrior_actions'
 import * as zombieActions from '../../actions/zombie_actions'
@@ -12,11 +13,12 @@ import * as zombieActions from '../../actions/zombie_actions'
 const LAST_TILE_IDX = 8
 
 class World extends Component {
-
   buildTile = idx => {
-    const { warrior } = this.props
+    const { warrior, zombie } = this.props.gameState
     if (idx === warrior.tile) {
       return <Tile key={idx} action={warrior.state}><Warrior state={warrior.state} /></Tile>
+    } else if (idx === zombie.tile) {
+      return <Tile key={idx} action={warrior.state}><Zombie state={zombie.state} /></Tile>
     } else if (idx === LAST_TILE_IDX) {
       return <Tile key={idx}><ExitPost /></Tile>
     } else {
@@ -52,8 +54,7 @@ class World extends Component {
 }
 
 const mapStateToProps = state => ({
-  warrior: state.warriorReducer,
-  levelCompleted: state.levelCompleted
+  gameState: state.gameState
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as warriorActions from '../../actions/warrior_actions'
-import {REST} from '../../actions/constants'
+import {REST} from '../../constants/actions'
 
 class Tile extends Component {
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {CharacterWrap, WarriorIdle, warriorWalking, WarriorAttack} from '../../styles/world'
-import {WALK, ATTACK, REST} from '../../actions/constants'
+import {WALK, ATTACK, REST} from '../../constants/actions'
 
 export default class Warrior extends Component {
 
