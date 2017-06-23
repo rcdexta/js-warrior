@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {CharacterWrap, ZombieIdle, ZombieAttack} from '../../styles/world'
 import {ATTACK, REST} from '../../constants/actions'
+import PropTypes from 'prop-types'
 
 export default class Zombie extends Component {
 
