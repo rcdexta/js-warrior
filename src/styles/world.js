@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 import { keyframes } from 'styled-components'
+import BackImg from '../images/back.jpg'
+import ExitImg from '../images/exit.png'
+import TileImg from '../images/Tile.png'
+import WarriorSprite from '../images/warrior_sprite.png'
+import ZombieSprite from '../images/zombie_sprite.png'
 
 export const warriorStand = keyframes`
   from {
@@ -55,7 +60,7 @@ export const WorldContainer = styled.div`
   padding: 0;
   margin: 0;
   overflow: auto;
-  background-image: url(https://dl.dropbox.com/s/96krfjyfy1vjjho/back.jpg);
+  background-image: url(${BackImg});
   background-repeat-y: no-repeat;
   background-size: contain;
 `
@@ -74,7 +79,7 @@ export const CharacterWrap = styled.div`
 export const Warrior = styled.div`
   max-width: 100%;
   height: 125px;
-  background-image: url(https://dl.dropbox.com/s/17iaqkidi3chfbr/sprite_resp.png);
+  background-image: url(${WarriorSprite});
   background-repeat: no-repeat;
   margin-left: 40%;
 `
@@ -82,7 +87,7 @@ export const Warrior = styled.div`
 export const Zombie = styled.div`
   max-width: 100%;
   height: 125px;
-  background-image: url(https://dl.dropbox.com/s/14yvzlrz3x3p5rx/zombie.png);
+  background-image: url(${ZombieSprite});
   background-repeat: no-repeat;
   margin-left: 10%;
 `
@@ -119,7 +124,7 @@ export const ZombieAttack = styled(Zombie)`
 
 export const ExitPostDiv = styled.div`
   z-index: 10;
-  background-image: url(https://dl.dropbox.com/s/pdfqdti5a7gmiy0/exit.png);
+  background-image: url(${ExitImg});
   background-repeat: no-repeat;
   position: absolute;
   bottom: 7em;
@@ -137,7 +142,7 @@ export const FloorDiv = styled.div`
 `
 
 export const TileDiv = styled.div`
-  background-image: url(https://dl.dropbox.com/s/hpfi20lhjl1qx8w/Tile.png);
+  background-image: url(${TileImg});
   background-repeat: no-repeat;
   width: 12%;
   height: auto;

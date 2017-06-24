@@ -7,9 +7,16 @@ const LAST_TILE = 8
 
 const computeWarriorSpace = state => {
   const { warrior, tiles } = state
-  const nextTile = warrior.tile + 1
-  const space = new Space(nextTile === LAST_TILE ? null : tiles[nextTile])
+  const opposingTile = warrior.tile + 1
+  const space = new Space(opposingTile === LAST_TILE ? null : tiles[opposingTile])
   return update(state, { warrior: { space: { $set: space } } })
+}
+
+const computeZombieSpace = state => {
+  const { zombie, tiles } = state
+  const opposingTile = zombie.tile - 1
+  const space = new Space(tiles[opposingTile])
+  return update(state, { zombie: { space: { $set: space } } })
 }
 
 const computeTiles = state => {
@@ -24,6 +31,7 @@ export default (state, payload) => {
   let { gameState } = state
   gameState = computeTiles(gameState)
   gameState = computeWarriorSpace(gameState)
+  gameState = computeZombieSpace(gameState)
   if (gameState.warrior.tile === LAST_TILE_INDEX) {
     gameState = update(gameState, { levelCompleted: { $set: true } })
   }

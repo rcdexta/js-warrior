@@ -1,4 +1,4 @@
-import { REST, WALK, ATTACK } from '../constants/actions'
+import { REST, WALK, ATTACK, ZOMBIE_ATTACK } from '../constants/actions'
 import update from 'immutability-helper'
 
 const defaultState = {
@@ -25,7 +25,15 @@ const takeRest = state => {
 }
 
 const attack = state => {
-  return update(state, { warrior: { state: { $set: ATTACK } } })
+  const { warrior } = state
+  const damage = warrior.space.isEnemy() ? 4 : 0
+  return update(state, { warrior: { state: { $set: ATTACK } }, zombie: { health: { $apply: x => x - damage } } })
+}
+
+const zombieAttack = state => {
+  const { zombie } = state
+  const damage = zombie.space.isWarrior() ? 2 : 0
+  return update(state, { zombie: { state: { $set: ATTACK } }, warrior: { health: { $apply: x => x - damage } } })
 }
 
 const incrementTile = state => {
@@ -48,6 +56,8 @@ export default (state = defaultState, payload) => {
       return takeRest(state)
     case ATTACK:
       return attack(state)
+    case ZOMBIE_ATTACK:
+      return zombieAttack(state)
     default:
       return state
   }

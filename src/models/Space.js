@@ -2,16 +2,20 @@ import ELEMENTS from '../constants/elements'
 
 export default class Space {
 
-  constructor(nextElement) {
-    this.nextElement = nextElement
+  constructor(opposingTile) {
+    this.opposingTile = opposingTile
   }
 
   isEmpty() {
-    return this.nextElement === ELEMENTS.E
+    return this.opposingTile === ELEMENTS.E
   }
 
   isEnemy() {
-    return this.nextElement === ELEMENTS.Z
+    return this.opposingTile === ELEMENTS.Z
+  }
+
+  isWarrior(){
+    return this.opposingTile === ELEMENTS.W
   }
 
 }

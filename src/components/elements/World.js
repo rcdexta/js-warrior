@@ -16,9 +16,9 @@ class World extends Component {
   buildTile = idx => {
     const { warrior, zombie } = this.props.gameState
     if (idx === warrior.tile) {
-      return <Tile key={idx} action={warrior.state}><Warrior state={warrior.state} /></Tile>
+      return <Tile key={idx} action={warrior.state}><Warrior {...warrior} /></Tile>
     } else if (idx === zombie.tile) {
-      return <Tile key={idx} action={warrior.state}><Zombie state={zombie.state} /></Tile>
+      return <Tile key={idx} action={warrior.state}><Zombie {...zombie} /></Tile>
     } else if (idx === LAST_TILE_IDX) {
       return <Tile key={idx}><ExitPost /></Tile>
     } else {
