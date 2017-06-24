@@ -36,12 +36,12 @@ const zombieAttack = state => {
   return update(state, { zombie: { state: { $set: ATTACK } }, warrior: { health: { $apply: x => x - damage } } })
 }
 
-const incrementTile = state => {
+const moveWarrior = state => {
   return update(state, {
     warrior: {
       tile: {
         $apply: x => {
-          return state.tiles[x + 1] === '' ? x + 1 : x
+          return state.warrior.space.isEmpty() ? x + 1 : x
         }
       }
     }
@@ -51,7 +51,7 @@ const incrementTile = state => {
 export default (state = defaultState, payload) => {
   switch (payload.type) {
     case WALK:
-      return incrementTile(state)
+      return moveWarrior(state)
     case REST:
       return takeRest(state)
     case ATTACK:

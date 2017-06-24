@@ -27,7 +27,7 @@ const computeTiles = state => {
   return update(state, { tiles: { $set: tiles } })
 }
 
-export default (state, payload) => {
+export default (state) => {
   let { gameState } = state
   gameState = computeTiles(gameState)
   gameState = computeWarriorSpace(gameState)
