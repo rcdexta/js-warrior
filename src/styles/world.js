@@ -76,6 +76,25 @@ export const CharacterWrap = styled.div`
   z-index: 1000;
 `
 
+export const HealthContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #000;
+  font-size: 1.8em;
+  font-weight: bold;
+`
+export const HeartImg = styled.img`
+  width: 2rem;
+`
+
+export const HealthText = styled.span`
+  margin-top: -0.7rem;
+  margin-left: 6px;
+  top: 50%;
+  position: absolute;
+`
+
 export const Warrior = styled.div`
   max-width: 100%;
   height: 125px;

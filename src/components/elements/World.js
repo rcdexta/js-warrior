@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Tile from './Tile'
 import Warrior from './Warrior'
 import Zombie from './Zombie'
+import HealthMeter from './HealthMeter'
 import ExitPost from './ExitPost'
 import * as warriorActions from '../../actions/warrior_actions'
 import * as zombieActions from '../../actions/zombie_actions'
@@ -44,6 +45,7 @@ class World extends Component {
     return (
       <div className="centered-container">
         <WorldContainer>
+          <HealthMeter/>
           <FloorDiv>
             {this.renderTiles()}
           </FloorDiv>
