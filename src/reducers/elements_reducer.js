@@ -1,20 +1,36 @@
-import { REST, WALK, ATTACK, ZOMBIE_ATTACK } from '../constants/actions'
+import { REST, WALK, ATTACK, ZOMBIE_ATTACK, SET_LEVEL } from '../constants/actions'
 import update from 'immutability-helper'
+
+const defaultWarriorState = {
+  tile: 0,
+  health: 20,
+  state: REST,
+  space: undefined
+}
+
+const defaultZombieState = {
+  tile: -1,
+  health: 10,
+  state: REST,
+  space: undefined
+}
 
 const defaultState = {
   level: 1,
   levelCompleted: false,
-  warrior: {
-    tile: 0,
-    health: 20,
-    state: REST,
-    space: undefined
-  },
-  zombie: {
-    tile: -1,
-    health: 10,
-    state: REST,
-    space: undefined
+  warrior: defaultWarriorState,
+  zombie: defaultZombieState
+}
+
+const updateLevel = (state, {content}) => {
+  const newLevel = content
+  state = update(state, { level: { $set: newLevel} })
+  state = update(state, { warrior: { $set: defaultWarriorState} })
+  state = update(state, { levelCompleted: { $set: false} })
+  if (newLevel === 2) {
+    return update(state, { zombie: { tile: { $set: 4 } } })
+  } else {
+    return state
   }
 }
 
@@ -58,6 +74,8 @@ export default (state = defaultState, action) => {
       return attack(state)
     case ZOMBIE_ATTACK:
       return zombieAttack(state)
+    case SET_LEVEL:
+      return updateLevel(state, action)
     default:
       return state
   }

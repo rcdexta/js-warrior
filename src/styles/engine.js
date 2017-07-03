@@ -7,7 +7,7 @@ export const RelativeDiv = styled.div`
 export const SubmitButton = styled.div`
   position: absolute;
   right: 0px;
-  z-index: 10000;
+  z-index: 1000;
   display: inline-block;
   background: #689f38;
   color: #fff;

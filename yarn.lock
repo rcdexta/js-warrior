@@ -1006,12 +1006,6 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-boron@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/boron/-/boron-0.2.3.tgz#63a1800771c0cb2b0d8f616687c62c1248cfb8a0"
-  dependencies:
-    domkit "^0.0.1"
-
 boxen@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-0.6.0.tgz#8364d4248ac34ff0ef1b2f2bf49a6c60ce0d81b6"
@@ -1877,10 +1871,6 @@ domhandler@2.1:
   resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.1.0.tgz#d2646f5e57f6c3bab11cf6cb05d3c0acf7412594"
   dependencies:
     domelementtype "1"
-
-domkit@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/domkit/-/domkit-0.0.1.tgz#88399d586794efc1154fec6c22cfe50f19bd4dbb"
 
 domutils@1.1:
   version "1.1.6"
@@ -4890,6 +4880,10 @@ react-ace@^5.0.1:
     lodash.isequal "^4.1.1"
     opencollective "^1.0.3"
     prop-types "^15.5.8"
+
+react-awesome-modal@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-awesome-modal/-/react-awesome-modal-2.0.1.tgz#51246812330337e094c588d990570c264818b0b8"
 
 react-dev-utils@^3.0.0:
   version "3.0.0"
