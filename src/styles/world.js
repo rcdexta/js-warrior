@@ -36,18 +36,21 @@ export const warriorWalk = keyframes`
 export const warriorAttack = keyframes`
   from {
     background-position: 0 0%;
+    transform: translateX(10%);
   }
   to {
-    background-position: 0 31.034483%; 
+    background-position: 0 31.034483%;
   }
 `
 
 export const zombieAttack = keyframes`
   from {
-    background-position: 0 35.294118%; 
+    background-position: 0 35.294118%;
+     transform: translateX(-100%);
   }
   to {
-    background-position: 0 55.882353%; 
+    background-position: 0 55.882353%;
+     
   }
 `
 

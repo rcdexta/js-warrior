@@ -3,7 +3,7 @@ import update from 'immutability-helper'
 
 const defaultWarriorState = {
   tile: 0,
-  health: 20,
+  health: 21,
   state: REST,
   space: undefined,
   movement: undefined,
@@ -11,8 +11,8 @@ const defaultWarriorState = {
 }
 
 const defaultZombieState = {
-  tile: -1,
-  health: 10,
+  tile: 4,
+  health: 15,
   state: REST,
   space: undefined
 }
@@ -20,6 +20,7 @@ const defaultZombieState = {
 const defaultState = {
   level: 1,
   levelCompleted: false,
+  gameOver: false,
   warrior: defaultWarriorState,
   zombie: defaultZombieState
 }
@@ -38,19 +39,19 @@ const updateLevel = (state, { content }) => {
 
 const takeRest = state => {
   const { warrior } = state
-  const newHealth = warrior.health <= 17 ? warrior.health + 3 : 20
+  const newHealth = warrior.health <= 18 ? warrior.health + 3 : 21
   return update(state, { warrior: { health: { $set: newHealth } } })
 }
 
 const attack = state => {
   const { warrior } = state
-  const damage = warrior.space.isEnemy() ? 4 : 0
+  const damage = warrior.space.isEnemy() ? 3 : 0
   return update(state, { warrior: { state: { $set: ATTACK } }, zombie: { health: { $apply: x => x - damage } } })
 }
 
 const zombieAttack = state => {
   const { zombie } = state
-  const damage = zombie.space.isWarrior() ? 2 : 0
+  const damage = zombie.space.isWarrior() ? 3 : 0
   return update(state, { zombie: { state: { $set: ATTACK } }, warrior: { health: { $apply: x => x - damage } } })
 }
 

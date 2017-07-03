@@ -16,7 +16,7 @@ export default class Zombie extends Component {
 
   render() {
     return <CharacterWrap>
-      {this.props.health}
+      <progress value={this.props.health} max={15} className="tertiary"></progress>
       {this.zombieState()}
     </CharacterWrap>
   }

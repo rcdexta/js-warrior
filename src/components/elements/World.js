@@ -13,6 +13,7 @@ import Zombie from './Zombie'
 import HealthMeter from './HealthMeter'
 import ExitPost from './ExitPost'
 import LevelModal from '../../modals/LevelModal'
+import GameOverModal from '../../modals/GameOverModal'
 import * as warriorActions from '../../actions/warrior_actions'
 import * as zombieActions from '../../actions/zombie_actions'
 import * as appActions from '../../actions/app_actions'
@@ -21,7 +22,7 @@ const LAST_TILE_IDX = 8
 
 class World extends Component {
 
-  state = { showLevelModal: false }
+  state = { showLevelModal: false, showGameOverModal: false }
 
   closeModal = () => {
     this.setState({ showLevelModal: false })
@@ -58,8 +59,11 @@ class World extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.gameState.levelCompleted) {
+    const {gameState} = this.props
+    if (nextProps.gameState.levelCompleted  && nextProps.gameState.levelCompleted != gameState.levelCompleted) {
       this.setState({ showLevelModal: true })
+    } else if (nextProps.gameState.gameOver && nextProps.gameState.gameOver != gameState.gameOver) {
+      this.setState({ showGameOverModal: true })
     }
   }
 
@@ -86,6 +90,7 @@ class World extends Component {
           </WorldContainer>
         </div>
         <LevelModal open={this.state.showLevelModal} onClose={this.gotoNextLevel} />
+        <GameOverModal open={this.state.showGameOverModal} />
       </div>
     )
   }

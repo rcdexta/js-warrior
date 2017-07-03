@@ -37,3 +37,105 @@ header a[role="button"]:focus, header label[role="button"]:hover, header label[r
 header .logo, header a.button, header a[role="button"] {
     text-decoration: none;
 }
+
+/*
+	Definitions for progress elements and spinners.
+*/
+progress {
+    display: block;
+    border: 1px solid #fff;
+    vertical-align: baseline;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 1rem;
+    width: 90%;
+    width: calc(100% - 1rem);
+    margin: 0.5rem 0.5rem;
+    border-radius: 2px;
+    background: #e0e0e0;
+    color: #0277bd;
+}
+
+progress::-webkit-progress-value {
+    background: #0277bd;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+progress::-webkit-progress-bar {
+    background: #e0e0e0;
+}
+
+progress::-moz-progress-bar {
+    background: #0277bd;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+progress[value="1000"]::-webkit-progress-value {
+    border-radius: 2px;
+}
+
+progress[value="1000"]::-moz-progress-bar {
+    border-radius: 2px;
+}
+
+/*
+	Custom elements for progress elements and spinners.
+*/
+progress.inline {
+    display: inline-block;
+    vertical-align: middle;
+    width: 60%;
+}
+
+progress.secondary {
+    color: #e53935;
+}
+
+progress.secondary::-webkit-progress-value {
+    background: #e53935;
+}
+
+progress.secondary::-moz-progress-bar {
+    background: #e53935;
+}
+
+progress.tertiary {
+    color: #689f38;
+}
+
+progress.tertiary::-webkit-progress-value {
+    background: #689f38;
+}
+
+progress.tertiary::-moz-progress-bar {
+    background: #689f38;
+}
+
+progress.nano {
+    height: 0.125rem;
+    width: calc(100% - 0);
+    margin: 0 0;
+    margin: 0 auto;
+    border-radius: 0;
+}
+
+progress.nano::-webkit-progress-value {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+progress.nano::-moz-progress-bar {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+progress.nano[value="1000"]::-webkit-progress-value {
+    border-radius: 0;
+}
+
+progress.nano[value="1000"]::-moz-progress-bar {
+    border-radius: 0;
+}

@@ -10,6 +10,18 @@ const computeWarriorSpace = state => {
   return update(state, { warrior: { space: { $set: space } } })
 }
 
+const checkHealth = state => {
+  const { zombie, warrior } = state
+  if (zombie.tile > -1 && zombie.health <= 0) {
+    return update(state, { zombie: { tile: { $set: -1 } } })
+  }
+  if (warrior.tile < LAST_TILE_INDEX && warrior.health <= 0) {
+    return update(state, { gameOver: { $set: true }, warrior: { tile: { $set: -1 } } })
+  }
+
+  return state
+}
+
 const computeZombieSpace = state => {
   const { zombie, tiles } = state
   const opposingTile = zombie.tile - 1
@@ -25,9 +37,10 @@ const computeTiles = state => {
   return update(state, { tiles: { $set: tiles } })
 }
 
-export default (state) => {
+export default state => {
   let { gameState } = state
   gameState = computeTiles(gameState)
+  gameState = checkHealth(gameState)
   gameState = computeWarriorSpace(gameState)
   gameState = computeZombieSpace(gameState)
   if (gameState.warrior.tile === LAST_TILE_INDEX) {
