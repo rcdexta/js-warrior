@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Tile from './Tile'
 import Warrior from './Warrior'
 import { Flex, Box } from 'grid-styled'
+import ELEMENTS from '../../constants/elements'
 import { LogoImg, LevelSpan } from '../../styles/world'
 import LogoPng from '../../images/logo.png'
 import Zombie from './Zombie'
@@ -28,20 +29,23 @@ class World extends Component {
 
   gotoNextLevel = () => {
     const { level } = this.props.gameState
-    this.props.actions.setLevel(level + 1)
+    const { resetError, clearLogs, setLevel } = this.props.actions
     this.closeModal()
+    resetError()
+    clearLogs()
+    setLevel(level + 1)
   }
 
   buildTile = idx => {
     const { warrior, zombie } = this.props.gameState
     if (idx === warrior.tile) {
-      return <Tile key={idx} action={warrior.state}><Warrior {...warrior} /></Tile>
+      return <Tile key={idx} element={ELEMENTS.W} idx={idx} movement={warrior.movement}><Warrior {...warrior} /></Tile>
     } else if (idx === zombie.tile) {
-      return <Tile key={idx} action={warrior.state}><Zombie {...zombie} /></Tile>
+      return <Tile key={idx} ><Zombie {...zombie} /></Tile>
     } else if (idx === LAST_TILE_IDX) {
       return <Tile key={idx}><ExitPost /></Tile>
     } else {
-      return <Tile key={idx} action={warrior.state} />
+      return <Tile key={idx} movement={warrior.movement}/>
     }
   }
 

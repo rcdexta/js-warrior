@@ -1,4 +1,8 @@
 export const WALK = 'WALK'
+export const WALK_IN = 'WALK_IN'
+export const START_WALKING = 'START_WALKING'
+export const STOP_WALKING = 'STOP_WALKING'
+export const WALK_OUT = 'WALK_OUT'
 export const ATTACK = 'ATTACK'
 export const REST = 'REST'
 

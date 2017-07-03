@@ -32,7 +32,6 @@ class ErrorLog extends Component {
         value={this.content()}
         fontSize={14}
         width="100%"
-        height="210px"
         highlightActiveLine={false}
         readOnly
         cursorStart={100}

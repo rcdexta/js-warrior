@@ -49,7 +49,8 @@ class GameEngine extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.gameState.levelCompleted) {
+    if (nextProps.gameState.levelCompleted != this.props.gameState.levelCompleted) {
+      this.props.actions.stopWalking()
       clearInterval(this.state.gameTimer)
     }
     this.updatePlayerSpaces(nextProps.gameState)
@@ -91,7 +92,7 @@ class GameEngine extends Component {
         }
       }
       this.setState({ turnCount: turnCount + 1 })
-    }, 500)
+    }, 700)
     this.setState({ gameTimer: gameTimer })
   }
 

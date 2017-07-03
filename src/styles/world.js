@@ -134,7 +134,7 @@ export const ZombieIdle = styled(Zombie)`
   animation: ${zombieStand} .8s steps(14) infinite;
 `
 
-export const warriorWalking = styled(Warrior)`
+export const WarriorWalking = styled(Warrior)`
   background-size: 139.689655%;
   width: 94px;
   animation: ${warriorWalk} .8s steps(9) infinite;
@@ -205,4 +205,5 @@ export const LevelSpan = styled.span`
   font-size: 1.7em;
   color: #c5c55b;
   font-weight: 700;
+  text-transform: uppercase;
 `

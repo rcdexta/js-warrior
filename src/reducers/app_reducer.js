@@ -15,7 +15,7 @@ const clearError = state => {
   return update(state, { errors: { $set: [] } })
 }
 
-const logTurn = (state, {content} ) => {
+const logTurn = (state, { content }) => {
   return update(state, { currentTurn: { $set: content } })
 }
 
@@ -24,7 +24,7 @@ const logAction = (state, { content }) => {
 }
 
 const clearLogs = state => {
-  return update(state, { logs: { $set: [] } })
+  return update(state, { logs: { $set: [] }, currentTurn: { $set: 0 } })
 }
 
 export default (state = defaultState, action) => {

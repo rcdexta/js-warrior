@@ -17,7 +17,7 @@ class LevelModal extends Component {
             <LevelContainer p={1} width={1 / 2}>
               <Flex column>
                 <LevelText>Level completed!</LevelText> <br/>
-                <NextButton onClick={this.orchestrate}>NEXT</NextButton>
+                <NextButton onClick={this.props.onClose}>NEXT</NextButton>
               </Flex>
             </LevelContainer>
           </Flex>

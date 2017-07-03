@@ -4,7 +4,6 @@ import '../styles/base.css'
 import World from './elements/World'
 import GameEngine from './GameEngine'
 import ErrorLog from './ErrorLog'
-import Help from './Help'
 import { Flex, Box } from 'grid-styled'
 import { HorizontalSeparator, BoxHeading } from '../styles/world'
 
@@ -22,13 +21,6 @@ class App extends Component {
           <GameEngine />
         </Box>
         <Box width={1 / 2} flex="1 1 auto">
-          <Box width={1} style={{ height: '50%' }}>
-            <BoxHeading>API DOCS</BoxHeading>
-            <Help />
-          </Box>
-          <Box width={1}>
-            <HorizontalSeparator />
-          </Box>
           <Box width={1}>
             <BoxHeading>CONSOLE</BoxHeading>
             <ErrorLog />
