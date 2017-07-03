@@ -3,12 +3,10 @@ import { LAST_TILE_INDEX } from '../constants/actions'
 import ELEMENTS from '../constants/elements'
 import Space from '../models/Space'
 
-const LAST_TILE = 8
-
 const computeWarriorSpace = state => {
   const { warrior, tiles } = state
   const opposingTile = warrior.tile + 1
-  const space = new Space(opposingTile === LAST_TILE ? null : tiles[opposingTile])
+  const space = new Space(tiles[opposingTile])
   return update(state, { warrior: { space: { $set: space } } })
 }
 
@@ -23,7 +21,7 @@ const computeTiles = state => {
   const tiles = new Array(9).fill('')
   tiles[state.warrior.tile] = ELEMENTS.W
   tiles[state.zombie.tile] = ELEMENTS.Z
-  tiles[LAST_TILE] = ELEMENTS.E
+  tiles[LAST_TILE_INDEX] = ELEMENTS.E
   return update(state, { tiles: { $set: tiles } })
 }
 

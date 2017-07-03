@@ -36,7 +36,7 @@ class World extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.levelCompleted) {
+    if (nextProps.gameState.levelCompleted) {
       alert('LEVEL COMPLETED!!!')
     }
   }

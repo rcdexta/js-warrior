@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import BackImg from '../images/back.jpg'
 import ExitImg from '../images/exit.png'
 import TileImg from '../images/Tile.png'

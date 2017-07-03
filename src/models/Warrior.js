@@ -10,10 +10,12 @@ export default class Warrior {
   }
 
   walk() {
+    this.actions.logAction('Walk forward ->')
     this.actions.walk()
   }
 
   attack() {
+    this.actions.logAction('Attack!!')
     this.actions.attack()
   }
 
@@ -22,6 +24,7 @@ export default class Warrior {
   }
 
   rest() {
+    this.actions.logAction('Take rest...')
     this.actions.rest()
   }
 

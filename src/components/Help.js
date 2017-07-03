@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import AceEditor from 'react-ace'
 import 'brace/mode/typescript'
-import 'brace/theme/twilight'
+import 'brace/theme/solarized_dark'
 
-const content = `//playTurn() method gets an instance of warrior
+const content = `playTurn() method gets an instance of warrior
 
 class Warrior {
   walk() //move in the given direction (forward by default)
@@ -21,7 +21,7 @@ export default class Help extends Component {
     return (
       <AceEditor
         mode="typescript"
-        theme="twilight"
+        theme="solarized_dark"
         ref={(input) => { this.aceEditor = input; }}
         name="js-warrior-log"
         showPrintMargin={false}
@@ -41,4 +41,3 @@ export default class Help extends Component {
     )
   }
 }
-

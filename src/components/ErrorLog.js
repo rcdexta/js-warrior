@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
-import 'brace/mode/javascript'
+import 'brace/mode/handlebars'
 import 'brace/theme/twilight'
 
 class ErrorLog extends Component {
-
   componentDidMount() {
-    this.aceEditor.editor.renderer.$cursorLayer.element.style.opacity=0;
+    this.aceEditor.editor.renderer.$cursorLayer.element.style.opacity = 0
   }
 
-  renderErrors = () => {
-    const { errors } = this.props.appState
-    const errorString = errors.length > 0 ? this.props.appState.errors.join('\n') : ''
+  content = () => {
+    const { errors, logs } = this.props.appState
+    if (errors.length > 0) {
+      return errors.join('\n')
+    }
+    if (logs.length > 0) {
+      return logs.join('\n')
+    }
+  }
+
+  render = () => {
     return (
       <AceEditor
-        ref={(input) => { this.aceEditor = input; }}
-        mode="javascript"
+        ref={input => {
+          this.aceEditor = input
+        }}
+        mode="handlebars"
         theme="twilight"
         name="js-warrior-log"
         showPrintMargin={false}
-        value={errorString}
+        value={this.content()}
         fontSize={14}
         width="100%"
         height="210px"
@@ -30,17 +39,9 @@ class ErrorLog extends Component {
         showGutter={false}
         editorProps={{ $blockScrolling: true }}
         setOptions={{
-          cursorStyle: 'wide',
+          cursorStyle: 'wide'
         }}
       />
-    )
-  }
-
-  render() {
-    return (
-      <div>
-        {this.renderErrors()}
-      </div>
     )
   }
 }

@@ -31,7 +31,7 @@ class GameEngine extends Component {
     super(props, context)
     const { dispatch } = this.context.store
     const { gameState } = this.props
-    const actions = bindActionCreators({ ...warriorActions, ...zombieActions }, dispatch)
+    const actions = bindActionCreators({ ...warriorActions, ...zombieActions, ...appActions }, dispatch)
     const warrior = new Warrior(actions, gameState.warrior.space)
     const zombie = new Zombie(actions, gameState.zombie.space)
     this.state = { code: defaultLevelCode, warrior: warrior, zombie: zombie, gameTimer: null, turnCount: 0 }
@@ -55,10 +55,16 @@ class GameEngine extends Component {
     this.updatePlayerSpaces(nextProps.gameState)
   }
 
+  resetAppState = () => {
+    const { resetError, clearLogs } = this.props.actions
+    resetError()
+    clearLogs()
+  }
+
   orchestrate = () => {
     const { warrior, zombie, code } = this.state
-    // let submittedCode = transform(code, { presets: ['es2015'] }).code;
-    // submittedCode = submittedCode.split('\n').join('\n')
+    this.resetAppState()
+
     try {
       Player = eval(code)
     } catch (e) {
@@ -73,6 +79,7 @@ class GameEngine extends Component {
       const { turnCount } = this.state
       try {
         if (turnCount % 2 == 0) {
+          this.props.actions.logTurn(turnCount/2+1)
           player.playTurn(warrior)
         } else {
           computer.playTurn(zombie)
@@ -97,8 +104,6 @@ class GameEngine extends Component {
     )
   }
 }
-
-GameEngine.propTypes = {}
 
 GameEngine.contextTypes = {
   store: PropTypes.object

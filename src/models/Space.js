@@ -7,7 +7,7 @@ export default class Space {
   }
 
   isEmpty() {
-    return this.opposingTile === ''
+    return this.opposingTile === '' || this.opposingTile === ELEMENTS.E
   }
 
   isEnemy() {
