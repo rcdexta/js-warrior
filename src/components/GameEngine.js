@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editor from './Editor'
-import { RelativeDiv, SubmitButton } from '../styles/engine'
+import { RelativeDiv, SubmitButton, HelpButton } from '../styles/engine'
 import Warrior from '../models/Warrior'
 import Zombie from '../models/Zombie'
 import Computer from './Computer'
 import { transform } from 'babel-standalone/babel'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import HelpModal from '../modals/HelpModal'
 
 import * as warriorActions from '../actions/warrior_actions'
 import * as zombieActions from '../actions/zombie_actions'
@@ -34,7 +35,15 @@ class GameEngine extends Component {
     const actions = bindActionCreators({ ...warriorActions, ...zombieActions, ...appActions }, dispatch)
     const warrior = new Warrior(actions, gameState.warrior.space)
     const zombie = new Zombie(actions, gameState.zombie.space)
-    this.state = { code: defaultLevelCode, warrior: warrior, zombie: zombie, gameTimer: null, turnCount: 0 }
+    this.state = { code: defaultLevelCode, warrior: warrior, zombie: zombie, gameTimer: null, turnCount: 0, showHelp: false }
+  }
+
+  showHelp = () => {
+    this.setState({showHelp: true})
+  }
+
+  closeModal = () => {
+    this.setState({showHelp: false})
   }
 
   updateCode = code => {
@@ -100,7 +109,9 @@ class GameEngine extends Component {
     return (
       <RelativeDiv>
         <SubmitButton onClick={this.orchestrate}>SUBMIT</SubmitButton>
+        <HelpButton onClick={this.showHelp}>HELP</HelpButton>
         <Editor code={this.state.code} onCodeChange={this.updateCode} />
+        <HelpModal open={this.state.showHelp} onClose={this.closeModal} />
       </RelativeDiv>
     )
   }

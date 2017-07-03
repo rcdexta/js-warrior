@@ -2,14 +2,14 @@ import styled from 'styled-components'
 import { Box } from 'grid-styled'
 
 export const ModalContainer = styled.div`
-  background-color: #191919;
+  background-color: #27191e;
   border: 1px solid #000000;
   z-index: 9000;
   display: flex;
-  color: #0d8c5a;
+  color: #c1c77d;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 5px 20px;
 `
 
 export const Trophy = styled.img`
@@ -39,4 +39,8 @@ export const NextButton = styled.div`
   text-decoration: none;
   transition: background 0.3s;
   cursor: pointer;
+`
+
+export const Text = styled.div`
+  color: #4caf95;
 `

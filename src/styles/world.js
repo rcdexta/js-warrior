@@ -103,7 +103,7 @@ export const HeartImg = styled.img`
 `
 
 export const HealthText = styled.span`
-  margin-top: -0.7rem;
+  margin-top: -0.8rem;
   margin-left: 6px;
   top: 50%;
   position: absolute;

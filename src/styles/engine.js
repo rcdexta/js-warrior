@@ -20,3 +20,18 @@ export const SubmitButton = styled.div`
   cursor: pointer;
 `
 
+export const HelpButton = styled.div`
+  position: absolute;
+  right: 80px;
+  z-index: 1000;
+  display: inline-block;
+  background: rgba(2, 119, 187, 0.9);
+  color: #fff;
+  border: 0;
+  border-radius: 2px;
+  padding: 0.3rem 0.9rem;
+  margin: 0.3rem 0.5rem;
+  text-decoration: none;
+  transition: background 0.3s;
+  cursor: pointer;
+`

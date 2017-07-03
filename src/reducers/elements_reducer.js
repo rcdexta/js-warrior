@@ -11,7 +11,7 @@ const defaultWarriorState = {
 }
 
 const defaultZombieState = {
-  tile: 4,
+  tile: -1,
   health: 15,
   state: REST,
   space: undefined
