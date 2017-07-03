@@ -18,7 +18,6 @@ export default class Warrior extends Component {
 
   render() {
     return <CharacterWrap>
-      {this.props.health}
       {this.warriorState()}
     </CharacterWrap>
   }

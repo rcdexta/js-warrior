@@ -16,5 +16,6 @@ body {
 }
 
 body, button, p, a {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+  background-color: #141414;
 }

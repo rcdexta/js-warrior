@@ -11,7 +11,7 @@ const defaultState = {
     space: undefined
   },
   zombie: {
-    tile: 4,
+    tile: -1,
     health: 10,
     state: REST,
     space: undefined
@@ -48,8 +48,8 @@ const moveWarrior = state => {
   })
 }
 
-export default (state = defaultState, payload) => {
-  switch (payload.type) {
+export default (state = defaultState, action) => {
+  switch (action.type) {
     case WALK:
       return moveWarrior(state)
     case REST:

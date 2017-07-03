@@ -65,9 +65,20 @@ export const WorldContainer = styled.div`
   background-size: contain;
 `
 
-export const Progress = styled.div`
- height: 10px;
- background-color: black;
+export const HorizontalSeparator = styled.div`
+  height: 10px;
+  width: 100%;
+  background-color: #343436;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.4);
+`
+
+export const VerticalSeparator = styled.div`
+  width: 10px;
+  height: 100%;
+  background-color: #343436;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  border-right: 1px solid rgba(0,0,0,0.4);
 `
 
 export const CharacterWrap = styled.div`
@@ -174,4 +185,18 @@ export const LogoImg = styled.img`
   height: 42px;
   width: auto;
   margin-left: 2%;
+`
+
+export const BoxHeading = styled.div`
+  text-transform: uppercase;
+  background: #1A1C1D;
+  color: #ccc;
+  white-space: nowrap;
+  position: relative;
+  padding: 5px;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.3em;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 `
