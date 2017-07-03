@@ -10,7 +10,7 @@ export default class Warrior {
   }
 
   walk() {
-    this.actions.logAction('Walk forward ->')
+    this.actions.logAction('Walk forward')
     this.actions.walk()
   }
 

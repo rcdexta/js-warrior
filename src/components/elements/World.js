@@ -5,6 +5,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Tile from './Tile'
 import Warrior from './Warrior'
+import { Flex, Box } from 'grid-styled'
+import { LogoImg, LevelSpan } from '../../styles/world'
+import LogoPng from '../../images/logo.png'
 import Zombie from './Zombie'
 import HealthMeter from './HealthMeter'
 import ExitPost from './ExitPost'
@@ -42,14 +45,27 @@ class World extends Component {
   }
 
   render() {
+    const {level} = this.props.gameState
     return (
-      <div className="centered-container">
-        <WorldContainer>
-          <HealthMeter/>
-          <FloorDiv>
-            {this.renderTiles()}
-          </FloorDiv>
-        </WorldContainer>
+      <div>
+        <header>
+          <Flex wrap>
+            <Box width={[1, 1 / 2]}>
+              <a href="/"><LogoImg src={LogoPng} /></a>
+            </Box>
+            <Box width={[1, 1 / 2]} style={{alignItems: 'center', display: 'flex'}}>
+              <LevelSpan>Level {level}</LevelSpan>
+            </Box>
+          </Flex>
+        </header>
+        <div className="centered-container">
+          <WorldContainer>
+            <HealthMeter />
+            <FloorDiv>
+              {this.renderTiles()}
+            </FloorDiv>
+          </WorldContainer>
+        </div>
       </div>
     )
   }

@@ -200,3 +200,9 @@ export const BoxHeading = styled.div`
   font-size: 1.3em;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 `
+
+export const LevelSpan = styled.span`
+  font-size: 1.7em;
+  color: #c5c55b;
+  font-weight: 700;
+`
