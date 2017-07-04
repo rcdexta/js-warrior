@@ -6,6 +6,7 @@ module.exports = {
 
   setSession(data) {
     localStorage.userName = data.userName
+    localStorage.level = 1
   },
 
   destroySession() {
@@ -13,7 +14,7 @@ module.exports = {
   },
 
   getUsername() {
-    return localStorage.userName || 'RC'
+    return localStorage.userName
   }
 
 }

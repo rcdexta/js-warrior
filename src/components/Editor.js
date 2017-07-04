@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AceEditor from 'react-ace'
 import 'brace/mode/javascript'
-import 'brace/theme/monokai'
+import 'brace/theme/twilight'
 
 class Editor extends Component {
   render() {
     return (
       <AceEditor
         mode="javascript"
-        theme="monokai"
+        theme="twilight"
         name="js-warrior-editor"
         showPrintMargin={false}
         value={this.props.code}

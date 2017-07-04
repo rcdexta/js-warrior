@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box } from 'grid-styled'
+import { Box, Flex } from 'grid-styled'
 
 export const ModalContainer = styled.div`
   background-color: #27191e;
@@ -9,7 +9,15 @@ export const ModalContainer = styled.div`
   color: #c1c77d;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+`
+
+export const HelpModalContainer = styled(ModalContainer)`
   padding: 5px 20px;
+`
+
+export const LoginModalContainer = styled(Flex)`
+  background-color: #27191e;
 `
 
 export const Trophy = styled.img`
@@ -37,10 +45,21 @@ export const NextButton = styled.div`
   padding: 0.3rem 0.9rem;
   margin: 0.3rem 0.5rem;
   text-decoration: none;
+  text-align: center;
   transition: background 0.3s;
   cursor: pointer;
+  width: 50%;
+  margin-top: 5px;
 `
 
 export const Text = styled.div`
   color: #4caf95;
+`
+
+export const UserBox = styled(Box)`
+  align-items: center;
+  color: #4caf95;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 `

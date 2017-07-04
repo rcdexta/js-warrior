@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
-import 'brace/mode/handlebars'
-import 'brace/theme/twilight'
+import 'brace/mode/ruby'
+import 'brace/theme/solarized_dark'
 
 class ErrorLog extends Component {
   componentDidMount() {
@@ -25,8 +25,8 @@ class ErrorLog extends Component {
         ref={input => {
           this.aceEditor = input
         }}
-        mode="handlebars"
-        theme="twilight"
+        mode="ruby"
+        theme="solarized_dark"
         name="js-warrior-log"
         showPrintMargin={false}
         value={this.content()}

@@ -6,8 +6,23 @@ import GameEngine from './GameEngine'
 import ErrorLog from './ErrorLog'
 import { Flex, Box } from 'grid-styled'
 import { HorizontalSeparator, BoxHeading } from '../styles/world'
+import LoginModal from '../modals/LoginModal'
+import UserSession from '../helpers/user_session'
 
 class App extends Component {
+
+  state = {showLoginModal: false}
+
+  componentDidMount() {
+    if (!UserSession.isLoggedIn()) {
+      this.setState({showLoginModal: true})
+    }
+  }
+
+  closeModal = () => {
+    this.setState({showLoginModal: false})
+  }
+
   render() {
     return (
       <Flex wrap>
@@ -29,6 +44,7 @@ class App extends Component {
         <Box width={1}>
           <HorizontalSeparator />
         </Box>
+        <LoginModal open={this.state.showLoginModal} onClose={this.closeModal}/>
       </Flex>
     )
   }

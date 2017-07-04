@@ -46,7 +46,7 @@ export const warriorAttack = keyframes`
 export const zombieAttack = keyframes`
   from {
     background-position: 0 35.294118%;
-     transform: translateX(-100%);
+     transform: translateX(-50%);
   }
   to {
     background-position: 0 55.882353%;

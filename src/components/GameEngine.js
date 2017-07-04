@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editor from './Editor'
-import { RelativeDiv, SubmitButton, HelpButton } from '../styles/engine'
+import { RelativeDiv, SubmitButton, HelpButton, StopButton } from '../styles/engine'
 import Warrior from '../models/Warrior'
 import Zombie from '../models/Zombie'
 import Computer from './Computer'
@@ -16,11 +16,13 @@ import * as appActions from '../actions/app_actions'
 
 const defaultLevelCode = `
 class Player {
+
   playTurn(warrior) {
-     //write your code here
      //this method gets called for every turn
-     warrior.walk()
+     //uncomment next line and call appropriate method
+     //warrior.????()
   }
+  
 }
 `
 
@@ -28,6 +30,7 @@ let Player = null
 const computer = new Computer()
 
 class GameEngine extends Component {
+
   constructor(props, context) {
     super(props, context)
     const { dispatch } = this.context.store
@@ -35,7 +38,7 @@ class GameEngine extends Component {
     const actions = bindActionCreators({ ...warriorActions, ...zombieActions, ...appActions }, dispatch)
     const warrior = new Warrior(actions, gameState.warrior.space)
     const zombie = new Zombie(actions, gameState.zombie.space)
-    this.state = { code: defaultLevelCode, warrior: warrior, zombie: zombie, gameTimer: null, turnCount: 0, showHelp: false }
+    this.state = { code: defaultLevelCode, warrior: warrior, zombie: zombie, gameTimer: null, turnCount: 0, showHelp: false, orchestrating: false }
   }
 
   showHelp = () => {
@@ -60,7 +63,7 @@ class GameEngine extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.gameState.levelCompleted != this.props.gameState.levelCompleted) {
       this.props.actions.stopWalking()
-      clearInterval(this.state.gameTimer)
+      this.stopOrchestration()
     }
     this.updatePlayerSpaces(nextProps.gameState)
   }
@@ -71,9 +74,13 @@ class GameEngine extends Component {
     clearLogs()
   }
 
+  stopOrchestration = () => {
+    this.setState({orchestrating: false})
+    clearInterval(this.state.gameTimer)
+  }
+
   orchestrate = () => {
     const { warrior, zombie, code } = this.state
-    this.resetAppState()
 
     try {
       Player = eval(code)
@@ -83,6 +90,9 @@ class GameEngine extends Component {
         return
       }
     }
+
+    this.resetAppState()
+    this.setState({orchestrating: true})
 
     const player = new Player()
     const gameTimer = setInterval(() => {
@@ -97,7 +107,7 @@ class GameEngine extends Component {
       } catch (e) {
         if (e instanceof TypeError) {
           this.props.actions.flagCodeError(e.message)
-          clearInterval(this.state.gameTimer)
+          this.stopOrchestration()
         }
       }
       this.setState({ turnCount: turnCount + 1 })
@@ -106,9 +116,11 @@ class GameEngine extends Component {
   }
 
   render() {
+    const {orchestrating} = this.state
     return (
       <RelativeDiv>
-        <SubmitButton onClick={this.orchestrate}>SUBMIT</SubmitButton>
+        <SubmitButton onClick={this.orchestrate}>{orchestrating ? <div className="spinner-donut secondary"></div> : 'SUBMIT'}</SubmitButton>
+        {orchestrating && <StopButton onClick={this.stopOrchestration}>STOP</StopButton>}
         <HelpButton onClick={this.showHelp}>HELP</HelpButton>
         <Editor code={this.state.code} onCodeChange={this.updateCode} />
         <HelpModal open={this.state.showHelp} onClose={this.closeModal} />
