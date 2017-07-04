@@ -20,9 +20,12 @@
     "styled-components": "^2.0.1"
   },
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "react-scripts": "1.0.7"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

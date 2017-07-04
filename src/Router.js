@@ -7,6 +7,7 @@ export default class Router extends Component {
   render() {
     return (
       <ReactRouter>
+        <Route path="/js-warrior" exact component={App} />
         <Route path="/" exact component={App} />
       </ReactRouter>
     )
