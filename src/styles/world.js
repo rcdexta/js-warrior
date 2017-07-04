@@ -210,3 +210,28 @@ export const LevelSpan = styled.span`
   font-weight: 700;
   text-transform: uppercase;
 `
+
+export const WelcomeSpan = styled.span`
+  position: absolute;
+  right: 0;
+  margin-right: 3%;
+  font-size: 1.7em;
+  color: #c5c55b;
+  font-weight: 700;
+`
+
+const fadeOut = keyframes`
+  0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}
+  100%{-webkit-transform:translateY(-80px);transform:translateY(-80px);opacity:0}}@keyframes fade-out-top{0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}100%{-webkit-transform:translateY(-80px);transform:translateY(-80px);opacity:0}
+`
+
+export const HealthScroller = styled.span`
+  animation: ${fadeOut} 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; 
+  font-size: 200%;
+  font-family: Oswald, sans-serif;
+  position: absolute;
+  left: 50%;
+  color: #EE4B53;
+  font-weight: bolder;
+  z-index: 1000;
+`

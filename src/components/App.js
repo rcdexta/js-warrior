@@ -8,19 +8,26 @@ import { Flex, Box } from 'grid-styled'
 import { HorizontalSeparator, BoxHeading } from '../styles/world'
 import LoginModal from '../modals/LoginModal'
 import UserSession from '../helpers/user_session'
+import * as appActions from '../actions/app_actions'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 class App extends Component {
+  state = { showLoginModal: false }
 
-  state = {showLoginModal: false}
-
-  componentDidMount() {
+  componentWillMount() {
     if (!UserSession.isLoggedIn()) {
-      this.setState({showLoginModal: true})
+      this.setState({ showLoginModal: true })
+    } else {
+      const currentLevel = parseInt(UserSession.getLevel(), 10)
+      if (currentLevel > 1) {
+        this.props.actions.setLevel(currentLevel)
+      }
     }
   }
 
   closeModal = () => {
-    this.setState({showLoginModal: false})
+    this.setState({ showLoginModal: false })
   }
 
   render() {
@@ -44,10 +51,14 @@ class App extends Component {
         <Box width={1}>
           <HorizontalSeparator />
         </Box>
-        <LoginModal open={this.state.showLoginModal} onClose={this.closeModal}/>
+        <LoginModal open={this.state.showLoginModal} onClose={this.closeModal} />
       </Flex>
     )
   }
 }
 
-export default App
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ ...appActions }, dispatch)
+})
+
+export default connect(null, mapDispatchToProps)(App)

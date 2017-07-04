@@ -7,25 +7,29 @@ import Tile from './Tile'
 import Warrior from './Warrior'
 import { Flex, Box } from 'grid-styled'
 import ELEMENTS from '../../constants/elements'
-import { LogoImg, LevelSpan, HelpSpan } from '../../styles/world'
+import { LogoImg, LevelSpan, WelcomeSpan } from '../../styles/world'
 import LogoPng from '../../images/logo.png'
 import Zombie from './Zombie'
 import HealthMeter from './HealthMeter'
 import ExitPost from './ExitPost'
 import LevelModal from '../../modals/LevelModal'
+import UserSession from '../../helpers/user_session'
 import GameOverModal from '../../modals/GameOverModal'
+import LastLevelModal from '../../modals/LastLevelModal'
 import * as warriorActions from '../../actions/warrior_actions'
 import * as zombieActions from '../../actions/zombie_actions'
 import * as appActions from '../../actions/app_actions'
 
 const LAST_TILE_IDX = 8
 
-class World extends Component {
+const GREETINGS = ['Bonjour', 'Hola', 'Hai', 'Hallo', 'Ciao', 'Olà', 'Namaste', 'Konnichiwa', 'Halo', 'Hello', 'Salut', 'Hei', 'Aloha']
+const greeting = GREETINGS[Math.floor(Math.random() * GREETINGS.length)]
 
-  state = { showLevelModal: false, showGameOverModal: false }
+class World extends Component {
+  state = { showLevelModal: false, showGameOverModal: false, showLastLevelModal: false }
 
   closeModal = () => {
-    this.setState({ showLevelModal: false })
+    this.setState({ showLevelModal: false, showGameOverModal: false })
   }
 
   gotoNextLevel = () => {
@@ -34,7 +38,16 @@ class World extends Component {
     this.closeModal()
     resetError()
     clearLogs()
+    UserSession.setLevel(level + 1)
     setLevel(level + 1)
+  }
+
+  welcomeText = () => {
+    if (UserSession.isLoggedIn()) {
+      return <WelcomeSpan>{greeting}, {UserSession.getUsername()}</WelcomeSpan>
+    } else {
+      return <span />
+    }
   }
 
   buildTile = idx => {
@@ -42,11 +55,11 @@ class World extends Component {
     if (idx === warrior.tile) {
       return <Tile key={idx} element={ELEMENTS.W} idx={idx} movement={warrior.movement}><Warrior {...warrior} /></Tile>
     } else if (idx === zombie.tile) {
-      return <Tile key={idx} ><Zombie {...zombie} /></Tile>
+      return <Tile key={idx}><Zombie {...zombie} /></Tile>
     } else if (idx === LAST_TILE_IDX) {
       return <Tile key={idx}><ExitPost /></Tile>
     } else {
-      return <Tile key={idx} movement={warrior.movement}/>
+      return <Tile key={idx} movement={warrior.movement} />
     }
   }
 
@@ -59,10 +72,14 @@ class World extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {gameState} = this.props
-    if (nextProps.gameState.levelCompleted  && nextProps.gameState.levelCompleted != gameState.levelCompleted) {
-      this.setState({ showLevelModal: true })
-    } else if (nextProps.gameState.gameOver && nextProps.gameState.gameOver != gameState.gameOver) {
+    const { gameState } = this.props
+    if (nextProps.gameState.levelCompleted && nextProps.gameState.levelCompleted !== gameState.levelCompleted) {
+      if (gameState.level < 3) {
+        this.setState({ showLevelModal: true })
+      } else {
+        this.setState({ showLastLevelModal: true })
+      }
+    } else if (nextProps.gameState.gameOver && nextProps.gameState.gameOver !== gameState.gameOver) {
       this.setState({ showGameOverModal: true })
     }
   }
@@ -78,6 +95,7 @@ class World extends Component {
             </Box>
             <Box width={[1, 1 / 2]} style={{ alignItems: 'center', display: 'flex' }}>
               <LevelSpan>Level {level}</LevelSpan>
+              {this.welcomeText()}
             </Box>
           </Flex>
         </header>
@@ -89,8 +107,9 @@ class World extends Component {
             </FloorDiv>
           </WorldContainer>
         </div>
-        <LevelModal open={this.state.showLevelModal} onClose={this.gotoNextLevel} />
-        <GameOverModal open={this.state.showGameOverModal} />
+        <LevelModal open={this.state.showLevelModal} onClose={this.gotoNextLevel} level={this.props.gameState.level}/>
+        <GameOverModal open={this.state.showGameOverModal} onClose={this.closeModal}/>
+        <LastLevelModal open={this.state.showLastLevelModal} />
       </div>
     )
   }

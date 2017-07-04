@@ -15,7 +15,7 @@ class LoginModal extends Component {
 
   login = () => {
     UserSession.setSession(this.state)
-    this.props.onClose()
+    window.location.reload()
   }
 
   render() {

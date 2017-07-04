@@ -5,6 +5,7 @@ import 'brace/mode/ruby'
 import 'brace/theme/solarized_dark'
 
 class ErrorLog extends Component {
+
   componentDidMount() {
     this.aceEditor.editor.renderer.$cursorLayer.element.style.opacity = 0
   }
@@ -12,7 +13,7 @@ class ErrorLog extends Component {
   content = () => {
     const { errors, logs } = this.props.appState
     if (errors.length > 0) {
-      return errors.join('\n')
+      return `[Error] ${errors.join('\n')}`
     }
     if (logs.length > 0) {
       return logs.join('\n')

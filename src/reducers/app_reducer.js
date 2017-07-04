@@ -4,7 +4,9 @@ import update from 'immutability-helper'
 const defaultState = {
   errors: [],
   logs: [],
-  currentTurn: 0
+  currentTurn: 0,
+  foul: false,
+  turnCheck: {}
 }
 
 const addError = (state, { content }) => {
@@ -20,11 +22,18 @@ const logTurn = (state, { content }) => {
 }
 
 const logAction = (state, { content }) => {
-  return update(state, { logs: { $push: [`[Turn${state.currentTurn}] ${content}`] } })
+  if (state.turnCheck[state.currentTurn]) {
+    state = update(state, { foul: { $set: true } })
+    return addError(state, { content: 'A turn cannot have more than one warrior action!' })
+  }
+  return update(state, {
+    logs: { $push: [`[Turn${state.currentTurn}] ${content}`] },
+    turnCheck: { $merge: { [state.currentTurn]: true } }
+  })
 }
 
 const clearLogs = state => {
-  return update(state, { logs: { $set: [] }, currentTurn: { $set: 0 } })
+  return update(state, { logs: { $set: [] }, currentTurn: { $set: 0 }, turnCheck: { $set: {} }, foul: { $set: false } })
 }
 
 export default (state = defaultState, action) => {

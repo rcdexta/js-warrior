@@ -9,13 +9,13 @@ import { RespTable } from '../styles/table'
 class HelpModal extends Component {
   render() {
     return (
-      <Modal visible={this.props.open} width="400" effect="fadeInUp" onClickAway={this.props.onClose}>
+      <Modal visible={this.props.open} width="600" height="700" effect="fadeInUp" onClickAway={this.props.onClose}>
         <HelpModalContainer style={{ justifyContent: 'initial', fontSize: '1.3em' }}>
           <Flex>
             <Box p={1} width={1}>
               <Flex style={{ borderBottom: '1px solid #777' }}>
-                <Box width={1 / 6}>
-                  <img src={HelpImg} />
+                <Box width={1/8}>
+                  <img src={HelpImg} alt=""/>
                 </Box>
                 <Box>
                   <h2>Help</h2>
@@ -41,6 +41,10 @@ class HelpModal extends Component {
                   <td data-th="Method">warrior.attack()</td>
                   <td data-th="Notes">Attack one step in the direction that you're facing. An attack deals 3 points of damage.</td>
                 </tr>
+                <tr>
+                  <td data-th="Method">warrior.rest()</td>
+                  <td data-th="Notes">Gain back 3 points of health back, but do nothing more.</td>
+                </tr>
               </RespTable>
 
               <h3>Senses</h3>
@@ -52,6 +56,10 @@ class HelpModal extends Component {
                 <tr>
                   <th>Method</th>
                   <th>Description</th>
+                </tr>
+                <tr>
+                  <td data-th="Method">warrior.health()</td>
+                  <td data-th="Notes">Return an integer representing your current health.</td>
                 </tr>
                 <tr>
                   <td data-th="Method">warrior.feel().isEnemy()</td>

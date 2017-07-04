@@ -12,8 +12,14 @@ export const ModalContainer = styled.div`
   padding: 20px;
 `
 
-export const HelpModalContainer = styled(ModalContainer)`
+export const HelpModalContainer = styled.div`
+  background-color: #27191e;
+  color: #c1c77d;
+  border: 1px solid #000000;
+  z-index: 9000;
   padding: 5px 20px;
+  height: 700px;
+  overflow: auto;
 `
 
 export const LoginModalContainer = styled(Flex)`
@@ -35,6 +41,10 @@ export const LevelContainer = styled(Box)`
 export const LevelText = styled.div`
   font-size: 1.5em;
   text-transform: uppercase;
+`
+
+export const ChummaText = styled.div`
+  font-size: 1.5em;
 `
 
 export const NextButton = styled.div`
@@ -62,4 +72,9 @@ export const UserBox = styled(Box)`
   justify-content: center;
   display: flex;
   flex-direction: column;
+`
+
+export const TipText = styled.h3`
+  text-align: center;
+  color: #795548;
 `

@@ -1,12 +1,21 @@
 export default class Warrior {
 
-  constructor(actions, space) {
+  constructor(actions, space, health) {
     this.actions = actions
     this.space = space
+    this.currentHealth = health
   }
 
   setSpace(space) {
     this.space = space
+  }
+
+  setHealth(health) {
+    this.currentHealth = health
+  }
+
+  health() {
+    return this.currentHealth
   }
 
   walk() {

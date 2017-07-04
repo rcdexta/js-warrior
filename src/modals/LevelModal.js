@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Modal from 'react-awesome-modal'
-import { LoginModalContainer, Trophy, LevelText, LevelContainer, NextButton, UserBox } from '../styles/modal'
-import { Flex, Box } from 'grid-styled'
+import { LoginModalContainer, Trophy, LevelText, NextButton, UserBox, TipText } from '../styles/modal'
+import { Box } from 'grid-styled'
 import TrophyImg from '../images/trophy.png'
 
 class LevelModal extends Component {
+
   render() {
     return (
-      <Modal visible={this.props.open} width="400" effect="fadeInUp" onClickAway={this.props.onClose}>
+      <Modal visible={this.props.open} width="400" height="200" effect="fadeInUp" onClickAway={this.props.onClose}>
         <LoginModalContainer wrap align="center" justify="space-around">
           <Box p={2}>
             <Trophy src={TrophyImg} />
@@ -20,6 +21,8 @@ class LevelModal extends Component {
             </UserBox>
           </Box>
         </LoginModalContainer>
+        {this.props.level === 1 && <TipText>Tip: Look for zombies along the way. Use your "senses" wisely</TipText>}
+        {this.props.level === 2 && <TipText>Tip: Monitoring health and taking rest is important!</TipText>}
       </Modal>
     )
   }
@@ -27,6 +30,7 @@ class LevelModal extends Component {
 
 LevelModal.propTypes = {
   open: PropTypes.bool.isRequired,
+  level: PropTypes.number.isRequired,
   onClose: PropTypes.func.isRequired
 }
 

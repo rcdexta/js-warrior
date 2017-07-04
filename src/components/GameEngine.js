@@ -5,7 +5,6 @@ import { RelativeDiv, SubmitButton, HelpButton, StopButton } from '../styles/eng
 import Warrior from '../models/Warrior'
 import Zombie from '../models/Zombie'
 import Computer from './Computer'
-import { transform } from 'babel-standalone/babel'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import HelpModal from '../modals/HelpModal'
@@ -36,7 +35,7 @@ class GameEngine extends Component {
     const { dispatch } = this.context.store
     const { gameState } = this.props
     const actions = bindActionCreators({ ...warriorActions, ...zombieActions, ...appActions }, dispatch)
-    const warrior = new Warrior(actions, gameState.warrior.space)
+    const warrior = new Warrior(actions, gameState.warrior.space, gameState.warrior.health)
     const zombie = new Zombie(actions, gameState.zombie.space)
     this.state = { code: defaultLevelCode, warrior: warrior, zombie: zombie, gameTimer: null, turnCount: 0, showHelp: false, orchestrating: false }
   }
@@ -56,12 +55,14 @@ class GameEngine extends Component {
   updatePlayerSpaces = gameState => {
     const { warrior, zombie } = this.state
     warrior.setSpace(gameState.warrior.space)
+    warrior.setHealth(gameState.warrior.health)
     zombie.setSpace(gameState.zombie.space)
     this.setState({ warrior: warrior, zombie: zombie })
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.gameState.levelCompleted != this.props.gameState.levelCompleted) {
+    const {gameState} = this.props
+    if (nextProps.gameState.levelCompleted !== gameState.levelCompleted || (nextProps.gameState.gameOver && nextProps.gameState.gameOver !== gameState.gameOver)) {
       this.props.actions.stopWalking()
       this.stopOrchestration()
     }
@@ -75,7 +76,8 @@ class GameEngine extends Component {
   }
 
   stopOrchestration = () => {
-    this.setState({orchestrating: false})
+    this.setState({orchestrating: false, turnCount: 0})
+    this.resetAppState()
     clearInterval(this.state.gameTimer)
   }
 
@@ -98,7 +100,7 @@ class GameEngine extends Component {
     const gameTimer = setInterval(() => {
       const { turnCount } = this.state
       try {
-        if (turnCount % 2 == 0) {
+        if (turnCount % 2 === 0) {
           this.props.actions.logTurn(turnCount/2+1)
           player.playTurn(warrior)
         } else {
