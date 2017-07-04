@@ -218,6 +218,7 @@ export const WelcomeSpan = styled.span`
   font-size: 1.7em;
   color: #c5c55b;
   font-weight: 700;
+  top: 30%;
 `
 
 const fadeOut = keyframes`

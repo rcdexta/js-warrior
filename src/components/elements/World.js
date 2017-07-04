@@ -89,7 +89,7 @@ class World extends Component {
     return (
       <div>
         <header>
-          <Flex wrap>
+          <Flex wrap style={{position: 'relative'}}>
             <Box width={[1, 1 / 2]}>
               <a href="/"><LogoImg src={LogoPng} /></a>
             </Box>
