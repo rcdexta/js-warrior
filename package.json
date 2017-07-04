@@ -2,6 +2,7 @@
   "name": "js-warrior",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://rcdexta.github.io/js-warrior",
   "dependencies": {
     "grid-styled": "^2.0.0-1",
     "immutability-helper": "^2.2.2",
