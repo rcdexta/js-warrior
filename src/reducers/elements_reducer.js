@@ -33,7 +33,7 @@ const updateLevel = (state, { content }) => {
   if (newLevel === 2) {
     return update(state, { zombie: { tile: { $set: 4 } } })
   } else if (newLevel === 3) {
-    return update(state, { zombie: { tile: { $set: 3 } } })
+    return update(state, { zombie: { tile: { $set: 3 }, health: { $set: 15 }, state: { $set: REST } } })
   } else {
     return state
   }
@@ -42,7 +42,7 @@ const updateLevel = (state, { content }) => {
 const takeRest = state => {
   const { warrior } = state
   const newHealth = warrior.health <= 18 ? warrior.health + 3 : 21
-  return update(state, { warrior: { health: { $set: newHealth }, state: {$set: REST} } })
+  return update(state, { warrior: { health: { $set: newHealth }, state: { $set: REST } } })
 }
 
 const attack = state => {
