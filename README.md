@@ -6,5 +6,7 @@ You are in control of a Ninja warrior whose actions  can be manipulated by writi
 
 Navigate to https://rcdexta.github.io/js-warrior to play the game
 
+![alt tag](https://github.com/rcdexta/js-warrior/blob/master/src/images/warrior.png)
+
 ### License
 MIT
