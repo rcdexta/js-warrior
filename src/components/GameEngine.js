@@ -29,7 +29,6 @@ let Player = null
 const computer = new Computer()
 
 class GameEngine extends Component {
-
   constructor(props, context) {
     super(props, context)
     const { dispatch } = this.context.store
@@ -41,11 +40,11 @@ class GameEngine extends Component {
   }
 
   showHelp = () => {
-    this.setState({showHelp: true})
+    this.setState({ showHelp: true })
   }
 
   closeModal = () => {
-    this.setState({showHelp: false})
+    this.setState({ showHelp: false })
   }
 
   updateCode = code => {
@@ -61,8 +60,11 @@ class GameEngine extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {gameState} = this.props
-    if (nextProps.gameState.levelCompleted !== gameState.levelCompleted || (nextProps.gameState.gameOver && nextProps.gameState.gameOver !== gameState.gameOver)) {
+    const { gameState } = this.props
+    if (
+      nextProps.gameState.levelCompleted !== gameState.levelCompleted ||
+      (nextProps.gameState.gameOver && nextProps.gameState.gameOver !== gameState.gameOver)
+    ) {
       this.props.actions.stopWalking()
       this.stopOrchestration()
     }
@@ -76,7 +78,7 @@ class GameEngine extends Component {
   }
 
   stopOrchestration = () => {
-    this.setState({orchestrating: false, turnCount: 0})
+    this.setState({ orchestrating: false, turnCount: 0 })
     this.resetAppState()
     clearInterval(this.state.gameTimer)
   }
@@ -85,7 +87,7 @@ class GameEngine extends Component {
     const { warrior, zombie, code } = this.state
 
     try {
-      Player = eval(code)
+      Player = eval('(' + code + ')')
     } catch (e) {
       if (e instanceof SyntaxError) {
         this.props.actions.flagCodeError(e.message)
@@ -94,14 +96,14 @@ class GameEngine extends Component {
     }
 
     this.resetAppState()
-    this.setState({orchestrating: true})
+    this.setState({ orchestrating: true })
 
     const player = new Player()
     const gameTimer = setInterval(() => {
       const { turnCount } = this.state
       try {
         if (turnCount % 2 === 0) {
-          this.props.actions.logTurn(turnCount/2+1)
+          this.props.actions.logTurn(turnCount / 2 + 1)
           player.playTurn(warrior)
         } else {
           computer.playTurn(zombie)
@@ -118,10 +120,10 @@ class GameEngine extends Component {
   }
 
   render() {
-    const {orchestrating} = this.state
+    const { orchestrating } = this.state
     return (
       <RelativeDiv>
-        <SubmitButton onClick={this.orchestrate}>{orchestrating ? <div className="spinner-donut secondary"></div> : 'SUBMIT'}</SubmitButton>
+        <SubmitButton onClick={this.orchestrate}>{orchestrating ? <div className="spinner-donut secondary" /> : 'SUBMIT'}</SubmitButton>
         {orchestrating && <StopButton onClick={this.stopOrchestration}>STOP</StopButton>}
         <HelpButton onClick={this.showHelp}>HELP</HelpButton>
         <Editor code={this.state.code} onCodeChange={this.updateCode} />
